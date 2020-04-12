@@ -1,0 +1,202 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <title></title>
+
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="description" content="O ">
+        <meta name="keywords" content="">
+        <meta name="author" content="">
+
+        <meta property="og:locale" content="pt-BR">
+        <meta property="og:url" content="">
+        <meta property="og:title" content="">
+        <meta property="og:description" content="">
+        <meta property="og:site_name" content="">
+        <meta property="og:image" content="">
+        <meta property="og:image:type" content="image/jpeg">
+        <meta property="og:type" content="website">
+
+        <meta name="verification" content="5a71106fd25c0e3e09b7be1a62770fe0" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="apple-touch-icon" sizes="57x57" href="fav/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="fav/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="fav/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="fav/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="fav/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="fav/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="fav/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="fav/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="fav/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192"  href="fav/android-icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="fav/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="fav/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="fav/favicon-16x16.png">
+        <link rel="manifest" href="fav/manifest.json">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="fav/ms-icon-144x144.png">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="stylesheet" href="//cdn.rawgit.com/necolas/normalize.css/master/normalize.css">
+        <link rel="stylesheet" href="//cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" type="text/css" href="player.css">
+    <head>
+    <body>
+        <header class="bg-dark">
+            <div class="container wide">
+              <div class="row">
+                <div class="column">
+                    <div>
+                        <h2 class="menu">slidecast demo • <a href="https://frontier.pioneer.app/posts/149-slidecast-slides-audio">feedback</a> </h2>
+                    </div>
+                </div>
+              </div>
+        </header>
+
+        <div class="container wide mt40 mb40">
+            <div class="row">
+                
+                <div class="box column">
+                    <div class="box_content center">
+                        <iframe id="slide-embed" src="//slides.com/frankmoshe/deck-491bca/embed?style=light&postMessageEvents=true" width="460" height="340" scrolling="no" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+
+                        <div class="audio-player" id="single-song-player">
+                             <div class="bottom-container">
+                                 <progress class="amplitude-song-played-progress" amplitude-main-song-played-progress="true" id="song-played-progress">
+                                 </progress>
+                                 
+                                 <div class="control-container">
+                                     <div class="amplitude-play-pause" amplitude-main-play-pause="true" id="play-pause">
+                                     </div>
+                                     
+                                 </div>
+                                 
+                            </div>
+                        </div>
+
+                        <div>
+                            Play the start button and active the fullscreen!
+                        </div>
+
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+        <!-- <hr class="double_hr"> -->
+
+
+        <footer>
+        </footer>
+
+        <script type="text/javascript">
+            window.addEventListener( 'message', function( event ) {
+              var data = JSON.parse( event.data );
+              
+              // if( data.namespace === 'reveal' ) {
+                
+              //   if( data.eventName === 'slidechanged' || data.eventName === 'ready' ) {
+
+              //     var state = data.state;
+
+              //     document.querySelector( '.status.state' ).innerHTML = 'indexh: ' + state.indexh + '<br>' +
+              //                                                           'indexv: ' + state.indexv;
+
+              //   }
+              //   else if( data.eventName === 'callback' ) {
+              //     document.querySelector( '.status.callback' ).innerHTML = 'Callback from <strong>'+data.method+'</strong> is <strong>'+data.result+'</strong>';
+              //   }
+
+              // }
+
+            } );
+
+            var frame = document.querySelector('iframe');
+            function jump_to_slide(slide_id){
+                var slide_id = slide_id
+                frame.contentWindow.postMessage( JSON.stringify({
+                    method: 'slide',
+                    args: [slide_id]
+                }), '*' );
+            }
+
+        </script>
+
+        <!-- Amplitude.js -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/amplitudejs/5.0.3/amplitude.min.js"></script>
+        <script type="text/javascript">
+
+            var timer_start = 0;
+            var slide_start = 0;
+            var seconds_start = 0;
+            var slide_id_base = -1;
+            var seconds = 0;
+
+            Amplitude.init({
+                "bindings": {
+                    37: 'prev',
+                    39: 'next',
+                    32: 'play_pause'
+                },
+                "songs": [
+                    {
+                      "url": "https://res.cloudinary.com/climatempo/video/upload/v1586687834/frontier/videoplayback.ogg",
+                    }
+                ],
+                "callbacks": {
+                    "stop": function(){
+                    },
+                    "play": function(){
+                    },
+                    "timeupdate": function(){
+                        seconds = Amplitude.getSongPlayedSeconds();
+                        // slide_id = get_slide_id();
+                        to_slide = slide_id();
+                        if (slide_id_base != to_slide) {
+                            slide_id_base = to_slide;
+                            jump_to_slide(to_slide);
+                        }
+                    }
+                }
+            });
+
+            window.onkeydown = function(e) {
+                return !(e.keyCode == 32);
+            };
+
+            document.getElementById('song-played-progress').addEventListener('click', function( e ){
+              var offset = this.getBoundingClientRect();
+              var x = e.pageX - offset.left;
+
+              Amplitude.setSongPlayedPercentage( ( parseFloat( x ) / parseFloat( this.offsetWidth) ) * 100 );
+            });
+
+
+            var slide_id = function(){
+                if (seconds < seconds_start){
+                    timer_start = 0;
+                }
+                timers = {0: {'slide':0}, 6: {'slide':1}, 15: {'slide':2}, 25: {'slide':3}, 35: {'slide':4}, 40: {'slide':5}, 50: {'slide':6}};
+                var timer_keys = Object.keys(timers);
+                for(var i = timer_start; i < timer_keys.length; i++){
+                    seconds_id = parseFloat(timer_keys[i]);
+                    if (seconds >= seconds_id) {
+                        slide_start = timers[seconds_id]['slide'];
+                    } else {
+                        seconds_start = seconds;
+                        timer_start = i - 1;
+                        break;
+                    };
+                }
+                return slide_start;
+            };
+
+        </script>
+
+</body>
+</html>

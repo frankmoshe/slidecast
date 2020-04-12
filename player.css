@@ -1,0 +1,83 @@
+
+div#single-song-player{
+  padding-top: 21px;
+}
+
+div#single-song-player div.bottom-container {
+	transform: translate(-50%, -50%);
+	left: 50%;
+	top: 50%;
+  height: 60px;
+  position: relative;
+  width: 460px;
+}
+div#single-song-player .control-container {
+  position: absolute;
+  left: 50%;
+  top: 50%; 
+}
+div#single-song-player div.bottom-container progress.amplitude-song-played-progress:not([value]) {
+  background-color: #fff;
+}
+div#single-song-player div.bottom-container progress.amplitude-song-played-progress {
+  background-color: #fff;
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 100%;
+  display: block;
+  cursor: pointer;
+  border: none;
+  position: absolute;
+  z-index: -100;
+}
+div#single-song-player div.bottom-container progress[value]::-webkit-progress-bar {
+  background-color: #fff;
+}
+div#single-song-player div.bottom-container progress[value]::-moz-progress-bar {
+  background-color: #CD1E16;
+}
+div#single-song-player div.bottom-container progress[value]::-webkit-progress-value {
+    background: linear-gradient(to right, #11998e, #38ef7d); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+div#single-song-player div.bottom-container div.control-container {
+  margin-top: 1%;
+  padding-bottom: 3%;
+}
+div#single-song-player div.bottom-container div.control-container div.amplitude-play-pause {
+  width: 1.1vw;
+  height: 1.6vw;
+  cursor: pointer;
+  float: left;
+  margin-top: -100%;
+}
+div#single-song-player div.bottom-container div.control-container div.amplitude-play-pause:hover {
+  opacity: .8;
+}
+div#single-song-player div.bottom-container div.control-container div.amplitude-play-pause.amplitude-paused {
+  background: url('https://res.cloudinary.com/dfiwfoxwx/image/upload/v1549657317/Life%20Coach/play.png');
+  background-size: cover;
+}
+div#single-song-player div.bottom-container div.control-container div.amplitude-play-pause.amplitude-playing {
+  background: url('https://res.cloudinary.com/dfiwfoxwx/image/upload/v1549657317/Life%20Coach/pause.png');
+  background-size: cover;
+}
+div#single-song-player div.bottom-container div.control-container div.meta-container {
+  float: none;
+  width: calc(100% - 84px);
+  text-align: left;
+  color: #000;
+  margin-top: 7%;
+  padding-left: 19%;
+}
+
+div#single-song-player div.bottom-container div.control-container:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+
+
